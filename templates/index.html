@@ -23,6 +23,7 @@
 
         <div class="tabs">
             <button class="tab-button active" onclick="showTab('image')">🖼️ Image Converter</button>
+            <button class="tab-button" onclick="showTab('ocr')">📝 Extract Text (OCR)</button>
             <button class="tab-button" onclick="showTab('merge')">📄 Merge PDFs</button>
             <button class="tab-button" onclick="showTab('split')">✂️ Split PDF</button>
             <button class="tab-button" onclick="showTab('compress')">🗜️ Compress PDF</button>
@@ -64,6 +65,40 @@
 
             <div class="info-box">
                 💡 Supports: HEIC, JPG, PNG, WebP, BMP, TIFF, GIF • Perfect for iPhone photos (HEIC → JPG)
+            </div>
+        </div>
+
+        <!-- OCR Tab -->
+        <div id="ocr" class="tab-content">
+            <h2>Extract Text from Image (OCR)</h2>
+            <p class="subtitle">Read text from screenshots, photos, and scanned documents</p>
+            
+            <form id="ocr-form" onsubmit="extractText(event)">
+                <div class="form-group">
+                    <label>Select Image File:</label>
+                    <input type="file" id="ocr-file" name="file" accept=".jpg,.jpeg,.png,.bmp,.tiff,.webp,.gif,.heic,.heif" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="ocr-btn">Extract Text</button>
+            </form>
+
+            <div id="ocr-result" style="display: none; margin-top: 25px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                    <h3 style="margin: 0;">Extracted Text:</h3>
+                    <button onclick="copyText()" class="btn" style="background: #3498db; color: white; padding: 8px 16px; font-size: 0.9em;">
+                        📋 Copy Text
+                    </button>
+                </div>
+                <textarea id="ocr-text" readonly style="width: 100%; min-height: 200px; padding: 15px; border: 2px solid #ecf0f1; border-radius: 8px; font-family: monospace; font-size: 14px; resize: vertical;"></textarea>
+            </div>
+
+            <div class="info-box">
+                💡 Works with screenshots, photos with text, scanned documents, and more. Requires Tesseract OCR to be installed on your system.
+                <br><br>
+                <strong>Install Tesseract:</strong>
+                <br>• macOS: <code>brew install tesseract</code>
+                <br>• Linux: <code>sudo apt-get install tesseract-ocr</code>
+                <br>• Windows: Download from <a href="https://github.com/UB-Mannheim/tesseract/wiki" target="_blank" style="color: #3498db;">github.com/UB-Mannheim/tesseract</a>
             </div>
         </div>
 
@@ -144,6 +179,57 @@
             
             // Highlight active button
             event.target.classList.add('active');
+        }
+
+        function extractText(event) {
+            event.preventDefault();
+            
+            const form = document.getElementById('ocr-form');
+            const fileInput = document.getElementById('ocr-file');
+            const btn = document.getElementById('ocr-btn');
+            const resultDiv = document.getElementById('ocr-result');
+            const textArea = document.getElementById('ocr-text');
+            
+            if (!fileInput.files[0]) {
+                alert('Please select an image file');
+                return;
+            }
+            
+            // Show loading state
+            btn.textContent = 'Extracting...';
+            btn.disabled = true;
+            resultDiv.style.display = 'none';
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            fetch('/ocr-image', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Error: ' + data.error + (data.install_help ? '\n\n' + data.install_help : ''));
+                } else {
+                    textArea.value = data.text || 'No text detected in image';
+                    resultDiv.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error.message);
+            })
+            .finally(() => {
+                btn.textContent = 'Extract Text';
+                btn.disabled = false;
+            });
+        }
+
+        function copyText() {
+            const textArea = document.getElementById('ocr-text');
+            textArea.select();
+            document.execCommand('copy');
+            alert('Text copied to clipboard!');
         }
     </script>
 </body>

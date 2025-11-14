@@ -4,7 +4,7 @@ FileForge Web Application
 A simple web interface for file conversion
 """
 
-from flask import Flask, render_template, request, send_file, flash, redirect, url_for
+from flask import Flask, render_template, request, send_file, flash, redirect, url_for, jsonify
 import os
 from pathlib import Path
 from werkzeug.utils import secure_filename
@@ -13,6 +13,7 @@ import pillow_heif
 import fitz  # PyMuPDF
 import tempfile
 import shutil
+import pytesseract
 
 pillow_heif.register_heif_opener()
 
@@ -227,6 +228,43 @@ def compress_pdf():
     except Exception as e:
         flash(f'Compression failed: {str(e)}', 'error')
         return redirect(url_for('index'))
+
+
+@app.route('/ocr-image', methods=['POST'])
+def ocr_image():
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file selected'}), 400
+    
+    file = request.files['file']
+    if not file or not allowed_file(file.filename, ALLOWED_IMAGE_EXTENSIONS):
+        return jsonify({'error': 'Please upload a valid image file'}), 400
+    
+    try:
+        # Save uploaded file
+        filename = secure_filename(file.filename)
+        input_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+        file.save(input_path)
+        
+        # Open image and perform OCR
+        img = Image.open(input_path)
+        
+        # Extract text using pytesseract
+        text = pytesseract.image_to_string(img)
+        
+        # Clean up
+        img.close()
+        os.remove(input_path)
+        
+        if not text.strip():
+            return jsonify({'text': '', 'message': 'No text detected in image'}), 200
+        
+        return jsonify({'text': text.strip()}), 200
+        
+    except pytesseract.TesseractNotFoundError:
+        return jsonify({'error': 'Tesseract OCR is not installed. Please install it first.', 
+                       'install_help': 'macOS: brew install tesseract | Linux: apt-get install tesseract-ocr | Windows: Download from github.com/UB-Mannheim/tesseract/wiki'}), 500
+    except Exception as e:
+        return jsonify({'error': f'OCR failed: {str(e)}'}), 500
 
 
 if __name__ == '__main__':
