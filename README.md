@@ -1,88 +1,90 @@
-# 🔧 SilentCanoe FileForge
+# ⚡ FileForge
 
 <div align="center">
 
-**Universal File Conversion and Manipulation Toolkit**
+**Universal File Converter - Web & Desktop**
 
-[![GitHub release](https://img.shields.io/github/release/koushal13/SilentCanoe-FileForge.svg)](https://github.com/koushal13/SilentCanoe-FileForge/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![Build Status](https://github.com/koushal13/SilentCanoe-FileForge/workflows/CI%2FCD%20Pipeline/badge.svg)](https://github.com/koushal13/SilentCanoe-FileForge/actions)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](https://github.com/koushal13/SilentCanoe-FileForge)
-[![GitHub stars](https://img.shields.io/github/stars/koushal13/SilentCanoe-FileForge.svg?style=social&label=Star)](https://github.com/koushal13/SilentCanoe-FileForge)
-[![GitHub forks](https://img.shields.io/github/forks/koushal13/SilentCanoe-FileForge.svg?style=social&label=Fork)](https://github.com/koushal13/SilentCanoe-FileForge/fork)
-
-<img src="https://img.shields.io/badge/Status-Production%20Ready-brightgreen" alt="Status">
-<img src="https://img.shields.io/badge/Maintenance-Active-brightgreen" alt="Maintenance">
-<img src="https://img.shields.io/badge/SilentCanoe-FileForge-blue?logo=data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJMMTMuMDkgOC4yNkwyMCA5TDEzLjA5IDE1Ljc0TDEyIDIyTDEwLjkxIDE1Ljc0TDQgOUwxMC45MSA4LjI2TDEyIDJaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K" alt="SilentCanoe">
+[![Platform](https://img.shields.io/badge/platform-Web%20%7C%20Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](https://github.com/koushal13/FileForge)
 
 </div>
 
-A comprehensive, open-source file processing suite with **professional GUI** and **enterprise-grade conversion engine**. Built by [SilentCanoe](https://silentcanoe.com) to make file conversion effortless and powerful.
+A simple, powerful file converter with a clean web interface. Convert images and PDFs effortlessly.
 
-## 🚀 Quick Start - Professional GUI Application
+## 🌐 **Quick Start - Web Version (Recommended)**
 
-### 🖥️ **Launch Full Application** (Production Ready)
+The easiest way to use FileForge is through the web interface:
+
 ```bash
-# Install dependencies first
-python install_dependencies.py
+# Install dependencies
+pip install Pillow pillow-heif PyMuPDF flask
 
-# Launch the complete FileForge application
+# Run the web app
+python web_app.py
+```
+
+Then open your browser to **http://localhost:5000**
+
+### ✨ Web Features
+- 🖼️ **Image Converter**: HEIC, JPG, PNG, WebP, BMP, TIFF, GIF with quality control
+- 📄 **Merge PDFs**: Combine multiple PDFs into one file
+- ✂️ **Split PDF**: Extract individual pages as a ZIP archive
+- 🗜️ **Compress PDF**: Reduce file size while maintaining quality
+
+> **💡 Why Web Version?** Clean interface, works everywhere, no complex setup needed!
+
+
+## 🖥️ Alternative: Desktop Version
+
+For advanced features, you can also run the desktop application:
+
+```bash
 python fileforge_converter.py
 ```
 
-**✨ Features Available Immediately:**
-- ⚡ **Auto-maximized professional GUI** with tabbed interface
-- 🖼️ **Professional image converter** with 6-checkpoint validation system
-- 📄 **Complete document processing suite** (PDF, Text, HTML, Markdown)
-- 🔄 **Advanced batch processing** with live progress updates
-- 📊 **Real-time conversion statistics** and quality control
+## 📦 Installation
 
-### 🎯 **Quick Demos**
+### Quick Setup
 ```bash
-# GUI File Analyzer (Instant Launch)
-python demo.py
+# Clone the repository
+git clone https://github.com/koushal13/FileForge.git
+cd FileForge
 
-# CLI Feature Showcase
-python fileforge_cli.py analyze yourfile.jpg
+# Install dependencies
+pip install Pillow pillow-heif PyMuPDF flask
 
-# Professional Image Converter (Standalone)
-python professional_image_converter.py
+# Run web version (recommended)
+python web_app.py
 ```
 
-> **🎊 Production Ready**: The main application (`fileforge_converter.py`) is a complete, professional-grade conversion utility with all features implemented!
+### Dependencies
+- **Pillow** - Image processing engine
+- **pillow-heif** - HEIC/HEIF support for iPhone photos
+- **PyMuPDF** - PDF manipulation
+- **Flask** - Web framework (for web version)
 
-## ✨ Key Features
+## 🎯 Features
 
-### 🖼️ **Professional Image Processing**
-- **✅ HEIC/HEIF Support**: Full iPhone photo compatibility with pillow-heif
-- **✅ 6-Checkpoint Validation**: Prevents corruption with integrity checking
-- **✅ Real PIL/Pillow Processing**: No file copying tricks - genuine image conversion
-- **✅ Universal Formats**: JPG, PNG, WebP, TIFF, BMP, GIF, ICO support
-- **✅ Quality Control**: Adjustable quality settings with optimization
-- **✅ Batch Processing**: Convert entire folders with live progress tracking
+### 🖼️ Image Conversion
+- **Formats**: HEIC, HEIF, JPG, PNG, WebP, BMP, TIFF, GIF
+- **Perfect for iPhone photos** - Convert HEIC to JPG instantly
+- **Quality control** - Adjustable quality settings (1-100)
+- **Auto-orientation** - Respects EXIF data
+- **Transparency handling** - Smart conversion for formats without alpha channel
 
-### 📄 **Complete Document Processing Suite**
-- **📄 PDF Operations**: Merge, split, compress, encrypt with password protection
-- **🔄 Format Conversion**: PDF ↔ Text, HTML, Markdown with proper parsing
-- **📝 Text Processing**: Word count, find & replace, format cleanup
-- **🔍 Text Extraction**: Smart extraction from PDF and HTML with fallback options
-- **💼 Professional Layout**: 3-column interface with categorized operations
+### 📄 PDF Tools
+- **Merge**: Combine multiple PDFs into one document
+- **Split**: Extract individual pages (downloaded as ZIP)
+- **Compress**: Reduce file size with optimization
 
-### 🔄 **Advanced Batch Processing Engine**
-- **📁 Smart File Filtering**: Format-specific filters (All Images, HEIC/HEIF, PNG, JPEG, etc.)
-- **⚡ Live Progress Updates**: Real-time conversion status with threading
-- **📊 Statistical Tracking**: Conversion statistics, file sizes, success rates
-- **🗑️ Cleanup Options**: Delete original files after successful conversion
-- **🔄 Recursive Scanning**: Process nested directory structures
-- **📈 Progress Visualization**: Progress bars and detailed status display
+## 💡 Why FileForge?
 
-### 🎨 **Professional User Interface**
-- **⚡ Auto-Maximized Window**: Starts maximized for optimal workspace
-- **📑 Tabbed Interface**: Organized workflow with Image, Batch, Document tabs
-- **🔄 Threaded Operations**: Non-blocking UI with background processing
-- **📊 Real-time Feedback**: Live conversion progress and statistics
-- **🎯 Error Handling**: Graceful error management with informative messages
+✅ **Simple & Clean** - No cluttered interface, just what you need  
+✅ **Web-Based** - Works in your browser, no complex installation  
+✅ **Privacy** - All processing happens locally  
+✅ **Fast** - Efficient conversion algorithms  
+✅ **Free & Open Source** - MIT licensed
 
 ## 🏗️ Architecture Overview
 
@@ -195,107 +197,51 @@ Professional document operations:
 - **Text Processing**: Extract, count, find & replace text content
 
 ### 🔄 **Batch Media Processing**
-Process entire folders of images with:
-- Format filtering and selection
-- Quality control and optimization
-- Live progress monitoring
-- Statistical reporting
 
-## 🚀 Usage Examples
+## 🚀 Usage
 
-### GUI Application
+### Web Version (Recommended)
 ```bash
-# Launch the main application
+# Start the server
+python web_app.py
+
+# Open in browser
+# http://localhost:5000
+```
+
+**Features:**
+- Upload and convert files instantly
+- Download converted files directly
+- Clean, simple interface
+- Works on any device with a browser
+
+### Desktop Version
+```bash
+# For advanced batch operations
 python fileforge_converter.py
-
-# Auto-maximized window with three main tabs:
-# 1. Image Converter - Single file conversions
-# 2. Batch Processor - Bulk operations with filters
-# 3. Document Converter - PDF and text processing
-```
-
-### Command Line Options
-```bash
-# Install dependencies
-python install_dependencies.py
-
-# Run file analysis demo
-python demo.py
-
-# Test professional converter
-python professional_image_converter.py
-
-# CLI feature showcase
-python fileforge_cli.py --help
-```
-
-### Python API Usage
-```python
-from professional_image_converter import ImageConverter
-
-# Initialize converter
-converter = ImageConverter()
-
-# Convert single image with validation
-result = converter.convert_image(
-    'input.heic',
-    'output.jpg',
-    quality=95
-)
-
-if result['success']:
-    print(f"Conversion completed: {result['output_path']}")
-    print(f"Validation checkpoints: {result['checkpoints_passed']}/6")
-```
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-#### Missing Dependencies
-```bash
-# Run the dependency installer
-python install_dependencies.py
-
-# Check installation status
-pip list | grep -E "(Pillow|pillow-heif|PyPDF2|beautifulsoup4|reportlab)"
-```
-
-#### GUI Not Starting
-- Ensure Python tkinter support: `python -m tkinter`
-- Try running with error output: `python fileforge_converter.py`
-- Check system requirements and dependency installation
-
-#### Conversion Failures
-- Verify input file integrity and format
-- Check output directory permissions
-- Review error messages in the application log
-- Use the 6-checkpoint validation for diagnostics
-
-### Debug Mode
-```bash
-# Enable detailed logging (if available)
-python fileforge_converter.py --debug
-
-# Test individual components
-python professional_image_converter.py
-python test_conversion.py
 ```
 
 ## 🤝 Contributing
 
-We welcome contributions! Areas for enhancement:
+Contributions welcome! Feel free to:
+- Report bugs
+- Suggest new features
+- Submit pull requests
 
-- **New Format Support**: Additional image and document formats
-- **Performance Optimization**: Faster conversion algorithms
-- **UI/UX Improvements**: Enhanced user interface features
-- **Documentation**: Tutorials and examples
-- **Testing**: Expanded test coverage
-- **Internationalization**: Multi-language support
+## 📄 License
 
-### Development Setup
-```bash
-git clone https://github.com/koushal13/SilentCanoe-FileForge.git
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+Built with:
+- [Pillow](https://python-pillow.org/) - Image processing
+- [PyMuPDF](https://pymupdf.readthedocs.io/) - PDF manipulation
+- [Flask](https://flask.palletsprojects.com/) - Web framework
+
+---
+
+**Made with ❤️ for easy file conversion**
 cd SilentCanoe-FileForge
 
 # Install development dependencies
@@ -351,107 +297,7 @@ python demo.py
 - Professional file analyzer with drag-and-drop interface
 - Interactive directory browser with file tree view
 - Detailed file information reports with conversion suggestions
-
-### 💻 **CLI Demo** (Full Feature Set)
-```bash
-# Analyze any file
-python fileforge_cli.py analyze yourfile.jpg
-
-# Browse directories
-python fileforge_cli.py list /your/directory --recursive
-
-# Get JSON output for automation
-python fileforge_cli.py analyze document.pdf --json
-
-# Launch GUI from command line
-python fileforge_cli.py gui
-
-# See all available commands
-python fileforge_cli.py --help
-```
-
-> **🎯 Ready to Use**: Both demo versions are fully functional and showcase the core file analysis capabilities!
-
-## ✨ Features
-
-### 🖼️ **Image Processing**
-- **Universal Format Support**: HEIC, JPG, PNG, WebP, TIFF, BMP, GIF, ICO, PSD (read), RAW formats
-- **Advanced Operations**: Resize, rotate, enhance (contrast/brightness/saturation), blur, watermark
-- **Batch Processing**: Convert entire folders recursively
-- **Contact Sheets**: Create photo contact sheets automatically
-- **Thumbnail Generation**: Batch thumbnail creation with custom sizes
-
-### 📄 **Document Conversion**
-- **PDF Operations**: Merge, split, compress, encrypt, OCR, form filling
-- **Office Formats**: Word (DOC/DOCX), Excel (XLS/XLSX), PowerPoint (PPT/PPTX)
-- **Text Formats**: TXT, RTF, HTML, Markdown, CSV, JSON, XML, YAML
-- **Advanced PDF**: Password protection, watermarking, annotations
-
-### 🎵 **Audio Processing**
-- **Format Support**: MP3, WAV, FLAC, AAC, OGG, WMA, M4A, OPUS, AIFF
-- **Quality Control**: Lossless, high, medium, low quality presets
-- **Audio Enhancement**: Volume normalization, fade in/out, channel manipulation
-- **Batch Operations**: Convert entire music libraries
-
-### 🎬 **Video Conversion**
-- **Format Support**: MP4, AVI, MKV, MOV, WMV, FLV, WebM, 3GP
-- **Quality Presets**: Ultra-low to ultra-high quality settings
-- **Resolution Control**: 480p, 720p, 1080p, 1440p, 4K scaling
-- **Advanced Features**: Compression, watermarking, GIF creation, trimming
-
-### 📦 **Batch Processing Engine**
-- **Parallel Processing**: Multi-threaded conversions for speed
-- **Recursive Directory Scanning**: Process nested folder structures
-- **Progress Tracking**: Real-time progress updates and logging
-- **Resume Capability**: Continue interrupted operations
-- **Smart Filtering**: Pattern-based file selection
-
-## 🚀 Quick Start
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/silentcanoe/fileforge.git
-cd fileforge
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Optional: Install external tools for full functionality
-# - FFmpeg for audio/video conversion
-# - LibreOffice for document conversion
-# - Tesseract for OCR capabilities
-```
-
-### Usage
-
-#### GUI (Recommended for Beginners)
-```bash
-python fileforge.py gui
-```
-
-#### Command Line Interface
-```bash
-# Convert single image
-python fileforge.py convert image photo.heic photo.jpg --quality 90
-
-# Convert PDF to Word
-python fileforge.py convert document report.pdf report.docx
-
-# Batch convert images
-python fileforge.py batch images *.heic --to jpg --recursive
-
-# PDF operations
-python fileforge.py pdf merge file1.pdf file2.pdf merged.pdf
-
-# Audio conversion
-python fileforge.py convert audio song.flac song.mp3 --quality high
-```
-
-## 📖 Documentation
-
-### Command Line Reference
+---
 
 #### Convert Commands
 ```bash
