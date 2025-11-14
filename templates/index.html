@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileForge - Universal File Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>⚡ FileForge</h1>
+            <p>Universal File Converter</p>
+        </header>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('image')">🖼️ Image Converter</button>
+            <button class="tab-button" onclick="showTab('merge')">📄 Merge PDFs</button>
+            <button class="tab-button" onclick="showTab('split')">✂️ Split PDF</button>
+            <button class="tab-button" onclick="showTab('compress')">🗜️ Compress PDF</button>
+        </div>
+
+        <!-- Image Converter Tab -->
+        <div id="image" class="tab-content active">
+            <h2>Image Converter</h2>
+            <p class="subtitle">Convert images between formats with quality control</p>
+            
+            <form action="/convert-image" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Select Image File:</label>
+                    <input type="file" name="file" accept=".heic,.heif,.jpg,.jpeg,.png,.bmp,.tiff,.webp,.gif" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Output Format:</label>
+                        <select name="format">
+                            <option value="jpg">JPG</option>
+                            <option value="png">PNG</option>
+                            <option value="webp">WebP</option>
+                            <option value="bmp">BMP</option>
+                            <option value="tiff">TIFF</option>
+                            <option value="gif">GIF</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Quality: <span id="quality-value">90</span></label>
+                        <input type="range" name="quality" min="1" max="100" value="90" 
+                               oninput="document.getElementById('quality-value').textContent = this.value">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Convert Image</button>
+            </form>
+
+            <div class="info-box">
+                💡 Supports: HEIC, JPG, PNG, WebP, BMP, TIFF, GIF • Perfect for iPhone photos (HEIC → JPG)
+            </div>
+        </div>
+
+        <!-- Merge PDFs Tab -->
+        <div id="merge" class="tab-content">
+            <h2>Merge PDFs</h2>
+            <p class="subtitle">Combine multiple PDF files into one</p>
+            
+            <form action="/merge-pdf" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Select PDF Files (2 or more):</label>
+                    <input type="file" name="files" accept=".pdf" multiple required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Merge PDFs</button>
+            </form>
+
+            <div class="info-box">
+                💡 Select multiple PDF files to merge them in the order selected
+            </div>
+        </div>
+
+        <!-- Split PDF Tab -->
+        <div id="split" class="tab-content">
+            <h2>Split PDF</h2>
+            <p class="subtitle">Split a PDF into individual pages</p>
+            
+            <form action="/split-pdf" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Select PDF File:</label>
+                    <input type="file" name="file" accept=".pdf" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Split PDF</button>
+            </form>
+
+            <div class="info-box">
+                💡 Each page will be saved as a separate PDF file in a ZIP archive
+            </div>
+        </div>
+
+        <!-- Compress PDF Tab -->
+        <div id="compress" class="tab-content">
+            <h2>Compress PDF</h2>
+            <p class="subtitle">Reduce PDF file size</p>
+            
+            <form action="/compress-pdf" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Select PDF File:</label>
+                    <input type="file" name="file" accept=".pdf" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Compress PDF</button>
+            </form>
+
+            <div class="info-box">
+                💡 Optimizes PDF file to reduce size while maintaining quality
+            </div>
+        </div>
+
+        <footer>
+            <p>FileForge - Universal File Converter | Made with ❤️</p>
+        </footer>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all buttons
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Highlight active button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>
