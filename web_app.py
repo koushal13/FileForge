@@ -19,7 +19,7 @@ import ollama
 pillow_heif.register_heif_opener()
 
 app = Flask(__name__)
-app.secret_key = 'fileforge-secret-key-change-in-production'
+app.secret_key = os.environ.get('SECRET_KEY', 'fileforge-secret-key-change-in-production')
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
 app.config['UPLOAD_FOLDER'] = tempfile.gettempdir()
 
@@ -304,4 +304,8 @@ Provide a concise, helpful analysis:"""
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    # For production, use gunicorn instead
+    # gunicorn --bind 0.0.0.0:$PORT web_app:app
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_ENV') != 'production'
+    app.run(debug=debug, host='0.0.0.0', port=port)

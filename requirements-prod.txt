@@ -1,0 +1,23 @@
+# Production requirements for deployment
+# Web framework
+Flask==3.1.0
+Werkzeug==3.0.1
+
+# WSGI server for production
+gunicorn==21.2.0
+
+# Image processing
+Pillow==11.0.0
+pillow-heif==0.18.0
+
+# PDF processing
+PyMuPDF==1.24.0
+
+# OCR (optional - requires system Tesseract)
+pytesseract==0.3.13
+
+# AI analysis (optional - requires Ollama running)
+ollama==0.3.3
+
+# Security
+python-dotenv==1.0.0

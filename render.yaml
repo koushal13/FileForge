@@ -1,0 +1,15 @@
+# Render Deployment Configuration
+# Docs: https://render.com/docs/yaml-spec
+
+services:
+  - type: web
+    name: fileforge
+    env: python
+    buildCommand: "pip install -r requirements.txt && pip install gunicorn"
+    startCommand: "gunicorn --bind 0.0.0.0:$PORT web_app:app"
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.6
+      - key: SECRET_KEY
+        generateValue: true
+    healthCheckPath: /

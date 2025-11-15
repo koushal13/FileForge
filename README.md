@@ -2,15 +2,33 @@
 
 <div align="center">
 
-**Simple Web-Based File Converter**
+### 🔒 **Privacy-First File Converter** 🚀
+
+**Convert images • Manipulate PDFs • Extract text with AI**  
+*All processing happens locally. Your files never leave your device.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Platform](https://img.shields.io/badge/platform-Web-lightgrey)](https://github.com/koushal13/FileForge)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![GitHub issues](https://img.shields.io/github/issues/koushal13/FileForge)](https://github.com/koushal13/FileForge/issues)
+[![GitHub stars](https://img.shields.io/github/stars/koushal13/FileForge?style=social)](https://github.com/koushal13/FileForge)
+
+[🚀 Quick Start](#-quick-start) • [✨ Features](#-features) • [📖 Docs](#-installation) • [🗺️ Roadmap](ROADMAP.md) • [💬 Discussions](https://github.com/koushal13/FileForge/discussions)
 
 </div>
 
-A clean, simple web application for converting images, manipulating PDFs, and extracting text with AI-powered analysis.
+---
+
+## 🌟 Why FileForge?
+
+**FileForge** is a free, open-source file conversion toolkit that puts **privacy first**. Unlike online converters that upload your files to unknown servers, FileForge processes everything **locally on your machine**.
+
+✨ **Perfect for:**
+- 📱 Converting iPhone HEIC photos to JPG
+- 📄 Merging, splitting, and compressing PDFs
+- 🔍 Extracting text from images with OCR
+- 🤖 AI-powered document analysis (optional, local)
 
 ## 🎥 Demo
 
@@ -118,12 +136,25 @@ python web_app.py
 
 ## 💡 Why FileForge?
 
-✅ **Simple & Clean** - No cluttered interface, just what you need  
-✅ **Web-Based** - Works in your browser, accessible from any device  
-✅ **Privacy First** - All processing happens locally on your machine  
-✅ **Fast & Efficient** - Optimized conversion algorithms  
-✅ **AI-Enhanced** - Optional intelligent text analysis with Ollama  
-✅ **Free & Open Source** - MIT licensed
+✅ **Privacy First** - All processing happens locally, files never leave your device  
+✅ **100% Free & Open Source** - MIT licensed, free forever  
+✅ **Simple & Clean** - Beautiful web interface, no clutter  
+✅ **No Registration Required** - Just download and use  
+✅ **AI-Enhanced** - Optional local AI analysis with Ollama  
+✅ **Cross-Platform** - Works on macOS, Linux, and Windows
+
+---
+
+## 🤝 **Support This Project**
+
+If FileForge saves you time, consider:
+- ⭐ [**Star this repo**](https://github.com/koushal13/FileForge) to show your support
+- 💰 [**Sponsor on GitHub**](https://github.com/sponsors/koushal13) to fund development
+- 🐛 [**Report bugs**](https://github.com/koushal13/FileForge/issues) to help improve it
+- 🔀 [**Contribute code**](CONTRIBUTING.md) to add features
+- 📢 [**Share on Twitter**](https://twitter.com/intent/tweet?text=Check%20out%20FileForge%20-%20a%20privacy-first%20file%20converter!&url=https://github.com/koushal13/FileForge) to spread the word
+
+---
 
 ## 🚀 Usage
 
@@ -189,6 +220,48 @@ FileForge/
 - **Features**: File upload handling, temporary file management, error handling
 - **AI Integration**: Ollama client for intelligent text analysis
 
+---
+
+## 🗺️ **What's Next?**
+
+Check out our [**Roadmap**](ROADMAP.md) to see what's coming:
+- 🎬 Video conversion support
+- 🎵 Audio processing tools
+- 🌐 Browser extensions
+- 📱 Mobile apps
+- 🔌 API endpoints
+
+**Want a feature?** [Open an issue](https://github.com/koushal13/FileForge/issues) or join the [discussion](https://github.com/koushal13/FileForge/discussions)!
+
+---
+
+## 🤝 Contributing
+
+We love contributions! Check out our [**Contributing Guide**](CONTRIBUTING.md) to get started.
+
+**Ways to contribute:**
+- 🐛 Fix bugs and report issues
+- ✨ Add new features from the [roadmap](ROADMAP.md)
+- 📖 Improve documentation
+- 🎨 Design UI/UX improvements
+- 🧪 Write tests and improve code quality
+
+**Good first issues:** [Click here](https://github.com/koushal13/FileForge/labels/good%20first%20issue)
+
+---
+
+## 📊 **Project Stats**
+
+<div align="center">
+
+![GitHub stars](https://img.shields.io/github/stars/koushal13/FileForge?style=social)
+![GitHub forks](https://img.shields.io/github/forks/koushal13/FileForge?style=social)
+![GitHub watchers](https://img.shields.io/github/watchers/koushal13/FileForge?style=social)
+
+</div>
+
+---
+
 ## 🤝 Contributing
 
 Contributions are welcome! Feel free to:
@@ -219,9 +292,24 @@ lsof -ti:5000 | xargs kill -9
 - Use the web version instead: `python web_app.py`
 - The desktop GUI has known issues with macOS Tk
 
+---
+
+## 📞 **Community & Support**
+
+- 💬 [**GitHub Discussions**](https://github.com/koushal13/FileForge/discussions) - Ask questions, share ideas
+- 🐛 [**Issue Tracker**](https://github.com/koushal13/FileForge/issues) - Report bugs, request features
+- 📧 **Email** - Contact the maintainer for private inquiries
+- 🐦 **Twitter** - Follow for updates (coming soon)
+
+---
+
 ## 📄 License
 
 MIT License - see [LICENSE](LICENSE) file for details.
+
+**TL;DR:** You can use, modify, and distribute this software freely, even commercially.
+
+---
 
 ## 🙏 Acknowledgments
 
@@ -234,4 +322,14 @@ Built with:
 
 ---
 
-**Made with ❤️ for simple, privacy-focused file conversion**
+---
+
+<div align="center">
+
+**⭐ If FileForge helped you, give it a star! ⭐**
+
+**Made with ❤️ for privacy-focused file conversion**
+
+[Star on GitHub](https://github.com/koushal13/FileForge) • [Report Bug](https://github.com/koushal13/FileForge/issues) • [Request Feature](https://github.com/koushal13/FileForge/issues/new) • [Sponsor](https://github.com/sponsors/koushal13)
+
+</div>
