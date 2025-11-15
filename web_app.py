@@ -14,6 +14,7 @@ import fitz  # PyMuPDF
 import tempfile
 import shutil
 import pytesseract
+import ollama
 
 pillow_heif.register_heif_opener()
 
@@ -265,6 +266,41 @@ def ocr_image():
                        'install_help': 'macOS: brew install tesseract | Linux: apt-get install tesseract-ocr | Windows: Download from github.com/UB-Mannheim/tesseract/wiki'}), 500
     except Exception as e:
         return jsonify({'error': f'OCR failed: {str(e)}'}), 500
+
+
+@app.route('/analyze-text', methods=['POST'])
+def analyze_text():
+    data = request.get_json()
+    text = data.get('text', '')
+    
+    if not text.strip():
+        return jsonify({'error': 'No text provided for analysis'}), 400
+    
+    try:
+        prompt = f"""Analyze the following text extracted from an image and provide:
+1. A brief summary of what the content is about
+2. Identify if there are any issues, errors, warnings, or problems mentioned
+3. Provide helpful recommendations or next steps if applicable
+
+Extracted text:
+{text.strip()}
+
+Provide a concise, helpful analysis:"""
+        
+        response = ollama.chat(
+            model='llama3.2:1b',  # Lightweight model
+            messages=[{'role': 'user', 'content': prompt}]
+        )
+        ai_analysis = response['message']['content']
+        
+        return jsonify({'analysis': ai_analysis}), 200
+        
+    except Exception as e:
+        error_msg = str(e)
+        if 'connection' in error_msg.lower() or 'refused' in error_msg.lower():
+            return jsonify({'error': 'Ollama is not running. Please start Ollama first.', 
+                           'install_help': 'Install Ollama from ollama.com, then run: ollama pull llama3.2:1b'}), 500
+        return jsonify({'error': f'AI analysis failed: {error_msg}'}), 500
 
 
 if __name__ == '__main__':

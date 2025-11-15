@@ -85,20 +85,36 @@
             <div id="ocr-result" style="display: none; margin-top: 25px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                     <h3 style="margin: 0;">Extracted Text:</h3>
-                    <button onclick="copyText()" class="btn" style="background: #3498db; color: white; padding: 8px 16px; font-size: 0.9em;">
-                        📋 Copy Text
-                    </button>
+                    <div style="display: flex; gap: 10px;">
+                        <button onclick="analyzeText()" class="btn" id="analyze-btn" style="background: #9b59b6; color: white; padding: 8px 16px; font-size: 0.9em;">
+                            🤖 Analyze with AI
+                        </button>
+                        <button onclick="copyText()" class="btn" style="background: #3498db; color: white; padding: 8px 16px; font-size: 0.9em;">
+                            📋 Copy Text
+                        </button>
+                    </div>
                 </div>
                 <textarea id="ocr-text" readonly style="width: 100%; min-height: 200px; padding: 15px; border: 2px solid #ecf0f1; border-radius: 8px; font-family: monospace; font-size: 14px; resize: vertical;"></textarea>
+                
+                <!-- AI Analysis Section -->
+                <div id="ai-analysis" style="display: none; margin-top: 20px;">
+                    <h3 style="margin-bottom: 10px;">🤖 AI Analysis:</h3>
+                    <div style="background: #f8f9fa; padding: 15px; border-left: 4px solid #9b59b6; border-radius: 8px; white-space: pre-wrap; line-height: 1.6;" id="analysis-text"></div>
+                </div>
             </div>
 
             <div class="info-box">
                 💡 Works with screenshots, photos with text, scanned documents, and more. Requires Tesseract OCR to be installed on your system.
                 <br><br>
+                🤖 <strong>AI-Powered Analysis:</strong> Uses Ollama (llama3.2:1b) to analyze extracted text and provide insights, detect issues, and offer recommendations.
+                <br><br>
                 <strong>Install Tesseract:</strong>
                 <br>• macOS: <code>brew install tesseract</code>
                 <br>• Linux: <code>sudo apt-get install tesseract-ocr</code>
                 <br>• Windows: Download from <a href="https://github.com/UB-Mannheim/tesseract/wiki" target="_blank" style="color: #3498db;">github.com/UB-Mannheim/tesseract</a>
+                <br><br>
+                <strong>Install Ollama (for AI analysis):</strong>
+                <br>• Download from <a href="https://ollama.com" target="_blank" style="color: #3498db;">ollama.com</a>, then run: <code>ollama pull llama3.2:1b</code>
             </div>
         </div>
 
@@ -189,6 +205,7 @@
             const btn = document.getElementById('ocr-btn');
             const resultDiv = document.getElementById('ocr-result');
             const textArea = document.getElementById('ocr-text');
+            const analysisDiv = document.getElementById('ai-analysis');
             
             if (!fileInput.files[0]) {
                 alert('Please select an image file');
@@ -199,6 +216,7 @@
             btn.textContent = 'Extracting...';
             btn.disabled = true;
             resultDiv.style.display = 'none';
+            analysisDiv.style.display = 'none';
             
             const formData = new FormData();
             formData.append('file', fileInput.files[0]);
@@ -222,6 +240,48 @@
             .finally(() => {
                 btn.textContent = 'Extract Text';
                 btn.disabled = false;
+            });
+        }
+
+        function analyzeText() {
+            const textArea = document.getElementById('ocr-text');
+            const analyzeBtn = document.getElementById('analyze-btn');
+            const analysisDiv = document.getElementById('ai-analysis');
+            const analysisText = document.getElementById('analysis-text');
+            
+            const text = textArea.value.trim();
+            if (!text) {
+                alert('No text available to analyze');
+                return;
+            }
+            
+            // Show loading state
+            analyzeBtn.textContent = 'Analyzing...';
+            analyzeBtn.disabled = true;
+            analysisDiv.style.display = 'none';
+            
+            fetch('/analyze-text', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ text: text })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    alert('Error: ' + data.error + (data.install_help ? '\n\n' + data.install_help : ''));
+                } else if (data.analysis) {
+                    analysisText.textContent = data.analysis;
+                    analysisDiv.style.display = 'block';
+                }
+            })
+            .catch(error => {
+                alert('Error: ' + error.message);
+            })
+            .finally(() => {
+                analyzeBtn.textContent = '🤖 Analyze with AI';
+                analyzeBtn.disabled = false;
             });
         }
 
